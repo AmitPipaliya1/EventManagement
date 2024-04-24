@@ -1,0 +1,63 @@
+<div class="form-container ">
+  <form class="login-form border border-success" [formGroup]="AddEvent" (ngSubmit)="onSubmit(AddEvent)">
+    <div class="form-group ">
+      <h2>Add Event</h2>
+    </div>
+    <div class="form-group mt-3 ">
+      <label for="event">Event Name</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Event Name"
+        formControlName="EventName">
+      <div *ngIf="AddEvent.controls.EventName.invalid && submitflag">
+        <div *ngIf="AddEvent.controls.EventName.errors?.required" class="text-danger">
+          Event Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group mt-3 ">
+      <label for="Discription">Discription</label>
+      <input type="text" class="form-control" id="Discription" placeholder="Discription" formControlName="Discription">
+      <div *ngIf="AddEvent.controls.Discription.invalid  && submitflag">
+        <div *ngIf="AddEvent.controls.Discription.errors?.required" class="text-danger">
+          Discription is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group mt-3">
+      <label for="Startdate">Start Date</label>
+      <input type="datetime-local" [min]="currentDate" (change)="SelectStartDate()" class="form-control" id="Startdate"
+        placeholder="Start Date" formControlName="Startdate">
+      <div *ngIf="AddEvent.controls.Startdate.invalid && submitflag ">
+        <div *ngIf="AddEvent.controls.Startdate.errors?.required" class="text-danger">
+          Start date is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group mt-3">
+      <label for="Enddate">End Date</label>
+      <input type="datetime-local" [min]="currentDate" [min]="mindate" class="form-control" id="Enddate"
+        placeholder="End Date" formControlName="Enddate">
+      <div *ngIf="AddEvent.controls.Enddate.invalid  && submitflag ">
+        <div *ngIf="AddEvent.controls.Enddate.errors?.required" class="text-danger">
+          End date is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group mt-4">
+      <div class="form-group ">
+        <label for="image">Image : &nbsp; </label>
+        <input (change)="onFileChange($event)" type="file" class="form-control-file" id="image" formControlName="Image">
+        <div *ngIf="AddEvent.controls.Image.invalid && submitflag ">
+          <div *ngIf="AddEvent.controls.Image.errors?.required" class="text-danger">
+            Please select image
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group d-flex justify-content-center mt-2 p-2">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+    <div *ngIf="registerSucess" class="alert alert-success mt-3" role="alert">
+      {{message}}
+    </div>
+  </form>
+</div>

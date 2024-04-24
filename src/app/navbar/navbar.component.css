@@ -1,0 +1,9 @@
+.navbar{
+    background-color: #0c8585;
+    padding: 0px ;
+}
+.img{
+    background-image: url("../../assets/Myimage.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

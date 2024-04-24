@@ -1,0 +1,28 @@
+<div *ngIf="Noevent" class="form-container text-danger">
+  <h1>{{eventmsg}}</h1>
+</div>
+<div *ngIf="!Noevent" class="form-container ">
+  <form class="login-form border border-success" [formGroup]="Publish" (ngSubmit)="onSubmit(Publish)">
+    <div class="form-group ">
+      <h2>Publish</h2>
+    </div>
+    <div class="form-group mt-3 ">
+      <label for="Event">Select a Event :</label>
+      <select name="Event" id="Event" formControlName="EventName">
+        <option value="" disabled selected>Select Your Event</option>
+        <option value={{a.EventId}} *ngFor="let a of EventList">{{a.EventName}}</option>
+      </select>
+      <div *ngIf="Publish.controls.EventName.invalid  && IsSubmited ">
+        <div *ngIf="Publish.controls.EventName.errors?.required" class="text-danger">
+          Please select a event
+        </div>
+      </div>
+    </div>
+    <div class="form-group d-flex justify-content-center mt-2 p-2 ">
+      <button type="submit" class="btn btn-success">Publish</button>
+    </div>
+    <div *ngIf="registerSucess" class="alert alert-success mt-3" role="alert">
+      {{message}}
+    </div>
+  </form>
+</div>

@@ -1,0 +1,55 @@
+<div *ngIf="Noevent" class="form-container text-danger">
+  <h1>{{eventmsg}}</h1>
+</div>
+<div *ngIf="!Noevent" class="form-container ">
+  <form class="login-form border border-success" [formGroup]="AddPrice" (ngSubmit)="onSubmit(AddPrice)">
+    <div class="form-group ">
+      <h2>Add Price</h2>
+    </div>
+    <div class="form-group mt-3">
+      <label for="Event">Select a Event :</label>
+      <select (change)="SelectActivity()" name="Event" id="Event" formControlName="EventName">
+        <option value="" disabled selected>Select Your Event</option>
+        <option *ngFor="let a of EventList" value="{{a.EventId}}">{{a.EventName}}</option>
+      </select>
+      <div *ngIf="AddPrice.controls.EventName.invalid  && IsSubmited" class="d-flex justify-content-center">
+        <div *ngIf="AddPrice.controls.EventName.errors?.required" class="d-flex justify-content-center text-danger">
+          Please select a event
+        </div>
+      </div>
+    </div>
+    <div *ngIf="Noactivity" class="text-danger">
+      {{actvitiymsg}}
+    </div>
+    <div *ngIf="!Noactivity" class="form-group mt-3">
+      <div class="form-group mt-3">
+        <label for="Activity">Select a Activity :</label>
+        <select name="Activity" id="Activity" formControlName="ActivityName">
+          <option value="" disabled selected>Select Your Activity</option>
+          <option value="{{a.ActivityId}}" *ngFor="let a of ActivityList">{{a.ActivityName}}</option>
+        </select>
+        <div *ngIf="AddPrice.controls.ActivityName.invalid  && IsSubmited ">
+          <div *ngIf="AddPrice.controls.ActivityName.errors?.required" class="text-danger">
+            Please select a Activity
+          </div>
+        </div>
+      </div>
+      <div class="form-group mt-3 ">
+        <label for="Price">Price</label>
+        <input type="text" class="form-control" (keypress)="numberOnly($event)" id="Price" placeholder="Price"
+          formControlName="Price">
+        <div *ngIf="AddPrice.controls.Price.invalid  && IsSubmited ">
+          <div *ngIf="AddPrice.controls.Price.errors?.required" class="text-danger">
+            Price is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group d-flex justify-content-center mt-2 p-2">
+        <button type="submit" class=" btn btn-success">Submit</button>
+      </div>
+      <div *ngIf="registerSucess" class="alert alert-success mt-3" role="alert">
+        {{message}}
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,34 @@
+<div class="form-container ">
+  <form class="login-form border border-success">
+    <div class="form-group  mt-3 d-flex justify-content-center">
+      <h2>Available Activity</h2>
+    </div>
+    <div class="imageclass">
+      <img class="ok" [src]="eventimage">
+    </div>
+    <div *ngIf="ActivityList" class="form-group  mt-3 d-flex justify-content-center">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Index</th>
+            <th scope="col">ActivityName</th>
+            <th scope="col">Discription</th>
+            <th scope="col">Price</th>
+            <th scope="col">Startdate</th>
+            <th scope="col">Enddate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of ActivityList, index as i">
+            <td>{{i+1}}</td>
+            <td>{{a.ActivityName}}</td>
+            <td>{{a.Discription}}</td>
+            <td>{{a.Price}}</td>
+            <td>{{a.StartDate.toString().substring(0,10)}}</td>
+            <td>{{a.EndDate.toString().substring(0,10)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,31 @@
+<div class="form-container">
+    <form class="login-form border border-success">
+<div class="form-group  mt-3 d-flex justify-content-center">       
+    <h2>Available Event</h2> 
+</div>
+<div *ngIf="EventList" class="form-group  mt-3">
+    <table class="table table-bordered">
+        <thead >
+          <tr>
+            <th scope="col">Index</th>
+            <th scope="col">EventName</th>
+            <th scope="col">Discription</th>
+            <th scope="col">Startdate</th>
+            <th scope="col">Enddate</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of EventList, index as i">
+                <td>{{i+1}}</td>
+                <td>{{a.EventName}}</td> 
+                <td>{{a.Discription}}</td>
+                <td>{{a.StartDate.toString().substring(0,10)}}</td>
+                <td>{{a.EndDate.toString().substring(0,10)}}</td>
+                <td><button class="btn btn-success" (click)="Seemore(i)">See More</button></td>
+              </tr>
+        </tbody>
+      </table>
+</div>
+</form>
+</div>
