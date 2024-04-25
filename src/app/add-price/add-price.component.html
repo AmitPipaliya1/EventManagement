@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!Noevent" class="form-container ">
   <form class="login-form border border-success" [formGroup]="AddPrice" (ngSubmit)="onSubmit(AddPrice)">
-    <div class="form-group ">
+    <div class="form-group d-flex justify-content-center ">
       <h2>Add Price</h2>
     </div>
     <div class="form-group mt-3">
@@ -18,17 +18,17 @@
         </div>
       </div>
     </div>
-    <div *ngIf="Noactivity" class="text-danger">
+    <div *ngIf="Noactivity == true" class="d-flex justify-content-center m-3 text-danger">
       {{actvitiymsg}}
     </div>
-    <div *ngIf="!Noactivity" class="form-group mt-3">
+    <div *ngIf="Noactivity == false" class="form-group mt-3">
       <div class="form-group mt-3">
         <label for="Activity">Select a Activity :</label>
         <select name="Activity" id="Activity" formControlName="ActivityName">
           <option value="" disabled selected>Select Your Activity</option>
           <option value="{{a.ActivityId}}" *ngFor="let a of ActivityList">{{a.ActivityName}}</option>
-        </select>
-        <div *ngIf="AddPrice.controls.ActivityName.invalid  && IsSubmited ">
+        </select>s
+        <div *ngIf="AddPrice.controls.ActivityName.invalid  && IsSubmited">
           <div *ngIf="AddPrice.controls.ActivityName.errors?.required" class="text-danger">
             Please select a Activity
           </div>

@@ -59,6 +59,9 @@ export class EventPublishComponent {
         this.message = (response.Message);
         this.registerSucess = true;
         if(this.message = "Event Publish SuccessFully"){
+          setTimeout(() => {
+            this.registerSucess =false
+          }, 1500);
           alert(this.message);
           this.IsSubmited = false
           this.ngOnInit();

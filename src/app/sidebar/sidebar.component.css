@@ -28,16 +28,14 @@
 
 .sidebar {
     margin-top: 40px;
-    /* margin: 0; */
     padding: 0;
-    /* width: 200px; */
     width: 15%;
-    background-color:#8bffe83d;;
+    background-color:#8bffe83d;
     position: fixed;
     height: 100%;
     overflow: auto;
   }
-  
+
   /* Sidebar links */
   .sidebar a {
     display: block;
@@ -45,7 +43,7 @@
     padding: 16px;
     text-decoration: none;
   }
-  
+ 
   /* Active/current link */
   .sidebar a.active {
     /* background-color: #04AA6D; */

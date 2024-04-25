@@ -38,6 +38,7 @@ export class UserLoginComponent {
         this.message = (response.Message);
         this.registerSucess = true;
         if (this.message = "LOGIN SUCCESSFULLY") {
+          alert(this.message)
           this.loginForm.reset();
           sessionStorage.setItem('usertoken', 'User');
           this.router.navigate(['/Viewevent']);

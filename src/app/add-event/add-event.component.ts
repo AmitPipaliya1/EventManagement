@@ -16,7 +16,6 @@ export class AddEventComponent {
   EndPoint!: any;
   registerSucess: boolean = false;
   message = '';
-
   imgstring!: string;
   a!: any;
   mindate!: any
@@ -87,8 +86,11 @@ export class AddEventComponent {
         console.log(response.Message);
         this.message = (response.Message);
         this.registerSucess = true;
-        alert(this.message);
         if(this.message = "Event Added Successfully"){
+          setTimeout(() => {
+            this.registerSucess =false;
+          }, 2000);
+          alert(this.message);
           this.submitflag =false
           this.AddEvent.reset();
           // this.router.navigate(['/Addactivity']);

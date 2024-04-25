@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ApiCallService } from 'src/app/Services/api-call.service';
+
 
 @Component({
   selector: 'app-admin-login',
@@ -16,7 +18,7 @@ export class AdminLoginComponent {
   message = '';
   imagestring!: any;
   IsSubmited = false;
-  constructor(private form: FormBuilder, private router: Router, private service: ApiCallService) { }
+  constructor(private form: FormBuilder, private router: Router, private service: ApiCallService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     sessionStorage.clear();
@@ -26,6 +28,7 @@ export class AdminLoginComponent {
       FLAG: ['AdminLogin']
     });
   }
+  
 
   onSubmit(form: FormGroup) {
     this.IsSubmited = true
@@ -41,9 +44,13 @@ export class AdminLoginComponent {
           console.log(this.message)
           this.registerSucess = true;
           if (this.message == "LOGIN SUCCESSFULLY") {
+            setTimeout(() => {
+              this.registerSucess =false
+            }, 3000);
             this.IsSubmited = false
             this.loginForm.reset();
             sessionStorage.setItem('authtoken', 'Admin');
+            // this.toastr.success('Hello world!', 'Toastr fun!');
             alert(this.message)
             this.router.navigate(['/sidebar']);
           }

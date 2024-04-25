@@ -96,6 +96,9 @@ export class AddActivityComponent {
         this.registerSucess = true;
         alert(this.message);
         if(this.message = "Activity Added Successfully"){
+          setTimeout(() => {
+            this.registerSucess =false
+          }, 800);
           this.Submitflag =false;
           this.AddActivity.reset();
           // this.router.navigate(['/Addprice']);

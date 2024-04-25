@@ -2,20 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-   height: 100vh;
-    /* background: rgb(238,174,202);
-   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%); */
+    /* height: 20px; */
+     margin-top: 70px;
+    /* margin-bottom: 20px; */
   }
 
   .imageclass{
-
-    /* top: 5px;
-    left: 5px; */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 500px; */
-    /* width: 500px; */
   }
 
   .ok{
@@ -24,6 +19,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
-    width: 500px;
+    height: 250px;
+    width: 350px;
   }

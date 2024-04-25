@@ -78,7 +78,7 @@ export class AddPriceComponent {
         debugger
         this.actvitiymsg = "THERE IS NO ACTIVITY"
         this.Noactivity = true;
-        console.log(this.ActivityList)
+        console.log(this.ActivityList);
         console.log(this.actvitiymsg);
       }
       else{
@@ -105,6 +105,9 @@ export class AddPriceComponent {
         this.registerSucess = true;
         alert(this.message);
         if (this.message = "PRICE ADDED") {
+          setTimeout(() => {
+            this.registerSucess =false
+          }, 2000);
           this.IsSubmited = false
           this.AddPrice.reset();
           // this.router.navigate(['/Publish']);

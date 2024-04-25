@@ -16,8 +16,7 @@ import { ViewActivityComponent } from './User/view-activity/view-activity.compon
 import { DatePipe } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-
-
+import { CustomPipePipe } from './custom-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -33,13 +32,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ViewActivityComponent,
     NavbarComponent,
     SidebarComponent,
+    CustomPipePipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -21,7 +21,7 @@ export class UserRegistrationComponent {
 
   ngOnInit() {
     this.registrationForm = this.form.group({
-      Name: ['', [Validators.required,Validators.pattern("^[a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*$")]],
+      Name: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*$")]],
       EmailId: ['', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       Password: ['', [Validators.required, Validators.minLength(8)]],
       MobileNo: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
@@ -30,19 +30,19 @@ export class UserRegistrationComponent {
     });
   }
 
-  omit_special_char(event)
-  {   
-     var k;  
-     k = event.charCode;  //         k = event.keyCode;  (Both can be used)
-     return((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57)); 
+  omit_special_char(event) {
+    var k;
+    k = event.charCode;  // k = event.keyCode;  (Both can be used)
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
   }
-  
-  openLoginPage(){
+
+  openLoginPage() {
     this.router.navigate(['/Userlogin'])
   }
+
   onSubmit(form: FormGroup) {
-    this.IsSubmitted =true;
-    if (this.registrationForm.valid) {
+      this.IsSubmitted = true;
+      if (this.registrationForm.valid) {
       this.user = this.registrationForm.value;
 
       //This API Call For Create New User
@@ -50,10 +50,10 @@ export class UserRegistrationComponent {
       this.service.ApiCall(this.EndPoint, this.user).subscribe((response: any) => {
         this.message = (response.Message);
         this.registerSucess = true;
-        if(this.message=="USER CREATED SUCCESSFULLY"){
+        if (this.message == "USER CREATED SUCCESSFULLY") {
           this.router.navigate(['/Userlogin']);
         }
-        else{
+        else {
           // alert("")
         }
       });

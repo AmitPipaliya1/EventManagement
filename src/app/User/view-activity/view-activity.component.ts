@@ -18,17 +18,16 @@ export class ViewActivityComponent {
   constructor(private form: FormBuilder, private router: Router, private service: ApiCallService) { }
   eventid: string
   eventimage: string
+
+
   ngOnInit(): void {
     this.eventid = this.service.id;
     this.eventimage = this.service.image
-
-
     let ViewActivity =
     {
       "FLAG": 'ShowActivity',
       "EventId": this.eventid
     }
-
     //This API Call For Show All Activity
     this.EndPoint = "api/Activity/AddActivity";
     this.service.ApiCall(this.EndPoint, ViewActivity).subscribe((response: any) => {

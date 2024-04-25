@@ -1,11 +1,15 @@
-<div class="form-container">
-    <form class="login-form border border-success">
-<div class="form-group  mt-3 d-flex justify-content-center">       
-    <h2>Available Event</h2> 
+<div *ngIf="!flag" class="form-container text-danger">
+  <h1>There is no Event</h1>
 </div>
-<div *ngIf="EventList" class="form-group  mt-3">
-    <table class="table table-bordered">
-        <thead >
+<div *ngIf="flag" class="form-container">
+  <form class="login-form border border-success">
+    <div class="form-group  mt-3 d-flex justify-content-center">
+      <h2>Available Event</h2>
+    </div>
+    <hr class="2px solid border-3 border-success">
+    <div *ngIf="EventList" class="form-group  m-3">
+      <table class="table table-bordered">
+        <thead>
           <tr>
             <th scope="col">Index</th>
             <th scope="col">EventName</th>
@@ -16,16 +20,16 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let a of EventList, index as i">
-                <td>{{i+1}}</td>
-                <td>{{a.EventName}}</td> 
-                <td>{{a.Discription}}</td>
-                <td>{{a.StartDate.toString().substring(0,10)}}</td>
-                <td>{{a.EndDate.toString().substring(0,10)}}</td>
-                <td><button class="btn btn-success" (click)="Seemore(i)">See More</button></td>
-              </tr>
+          <tr *ngFor="let a of EventList, index as i">
+            <td>{{i+1}}</td>
+            <td>{{a.EventName}}</td>
+            <td>{{a.Discription}}</td>
+            <td>{{a.StartDate.toString().substring(0,10) }}</td>
+            <td>{{a.EndDate.toString().substring(0,10)}}</td>
+            <td><button class="btn btn-success" (click)="Seemore(i)">See More</button></td>
+          </tr>
         </tbody>
       </table>
-</div>
-</form>
+    </div>
+  </form>
 </div>
