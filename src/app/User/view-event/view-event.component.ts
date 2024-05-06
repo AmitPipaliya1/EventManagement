@@ -15,27 +15,40 @@ export class ViewEventComponent {
   Noevent = false
   message = '';
   EventList!: any;
-  flag :boolean = false ;
+  flag :boolean = false;
+  flag2:boolean = true;
+  ShowEvent:any
   constructor(private form: FormBuilder, private router: Router, private service: ApiCallService) { }
-
+  
   ngOnInit(): void {
     console.log("in view event");
-   this.flag = false ;
+    this.flag = false ;
 
-    let ShowEvent =
-    {
-      "FLAG": 'ShowPublishEvent'
+    // Logic For Ongoing And Upcoming Event
+    if (this.service.vieweventflag == "UpcomingEvent" ) {
+      this.ShowEvent =
+      {
+        "FLAG": 'ShowUpcomingEvent'
+      }
+    }
+    else if(this.service.vieweventflag == "OngoingEvent"){
+      this.ShowEvent = {
+        "FLAG": 'ShowOngoingEvent'
+      }
+    }
+    else{
+      this.ShowEvent = {
+        "FLAG": 'ShowPublishEvent'
+      }
     }
 
     //This API Call For Show All Event
     this.EndPoint = "api/Event/AddEvent";
-    this.service.ApiCall(this.EndPoint, ShowEvent).subscribe((response: any) => {
+    this.service.ApiCall(this.EndPoint, this.ShowEvent).subscribe((response: any) => {
       // console.log(response.ArrayOfResponse);
       this.message = response.Message;
       this.EventList = response.ArrayOfResponse;
       console.log(this.EventList.length)
-
-
       console.log(this.EventList)
       if(this.EventList.length > 0)
         {

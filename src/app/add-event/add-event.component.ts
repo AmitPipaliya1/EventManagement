@@ -46,7 +46,7 @@ export class AddEventComponent {
 
   // This Method For Convert Image Into Base64string
   onFileChange(event: any) {
-    if (event.target.files[0].type == 'image/jpeg' || event.target.files[0].type == 'image/png' || event.target.files[0].type == 'image/avif') {
+    if (event.target.files[0].type == 'image/jpeg' || event.target.files[0].type == 'image/png') {
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -77,11 +77,12 @@ export class AddEventComponent {
         "StartDate": this.AddEvent.controls["Startdate"].value,
         "EndDate": this.AddEvent.controls["Enddate"].value,
         "Image": this.imgstring,
-        "FLAG": this.AddEvent.controls["FLAG"].value
+        "FLAG": "AddEvent"
       }
 
       // This Api Call For Add New Event
       this.EndPoint = "api/Event/AddEvent";
+      console.log("this is test ",Request)
       this.service.ApiCall(this.EndPoint, Request).subscribe((response: any) => {
         console.log(response.Message);
         this.message = (response.Message);

@@ -13,6 +13,6 @@ export class NavbarComponent {
     this.router.navigate(['/Adminlogin']);
   }
   register(){
-    this.router.navigate(['/Userregistration']);
+    this.router.navigate(['/Userlogin']);
   }
 }

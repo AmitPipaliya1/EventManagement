@@ -26,6 +26,9 @@ export class UserLoginComponent {
     });
   }
 
+  openRegisterPage(){
+    this.router.navigate(['/Userregistration'])
+  }
   onSubmit(form: FormGroup) {
     this.IsSubmitted = true
     if (this.loginForm.valid) {
@@ -35,13 +38,16 @@ export class UserLoginComponent {
       this.EndPoint = "api/User/CreateUser";
       this.service.ApiCall(this.EndPoint, this.user).subscribe((response: any) => {
         console.log(response.Message);
-        this.message = (response.Message);
+        this.message = response.Message;
         this.registerSucess = true;
-        if (this.message = "LOGIN SUCCESSFULLY") {
-          alert(this.message)
+        if (this.message == "LOGIN SUCCESSFULLY") {
+          alert(this.message);
           this.loginForm.reset();
           sessionStorage.setItem('usertoken', 'User');
-          this.router.navigate(['/Viewevent']);
+          this.router.navigate(['/usersidebar']);
+        }
+        else {
+          alert(this.message);
         }
       });
     }

@@ -13,20 +13,54 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthenticationGuard } from './authentication.guard';
 import { UserauthGuard } from './userauth.guard';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { UsersidebarComponent } from './User/usersidebar/usersidebar.component';
 
 const routes: Routes = [
   { path: 'Adminlogin', component: AdminLoginComponent },
   { path: 'Userlogin', component: UserLoginComponent },
   { path: 'Userregistration', component: UserRegistrationComponent },
-  { path: 'Addevent', component: AddEventComponent, canActivate:[AuthenticationGuard] ,data: {role: 'Admin'}},
-  { path: 'Addactivity', component: AddActivityComponent,canActivate:[AuthenticationGuard] ,data: {role: 'Admin'} },
-  { path: 'Addprice', component: AddPriceComponent,canActivate:[AuthenticationGuard] ,data: {role: 'Admin'} },
-  { path: 'Publish', component: EventPublishComponent,canActivate:[AuthenticationGuard]  ,data: {role: 'Admin'}},
-  { path: 'Viewevent', component: ViewEventComponent,canActivate:[UserauthGuard], data: {role: 'User'} },
-  { path: 'Viewactivity', component: ViewActivityComponent,canActivate:[UserauthGuard], data: {role: 'User'}},
-  { path: 'sidebar', component: SidebarComponent,canActivate:[AuthenticationGuard]  ,data: {role: 'Admin'}} , 
-  { path: 'Home', component: NavbarComponent},
-  { path: "**", component: NavbarComponent}                                         
+  // { path: 'Addevent', component: AddEventComponent, canActivate:[AuthenticationGuard] ,data: {role: 'Admin'}},
+  // { path: 'Addactivity', component: AddActivityComponent,canActivate:[AuthenticationGuard] ,data: {role: 'Admin'} },
+  // { path: 'Addprice', component: AddPriceComponent,canActivate:[AuthenticationGuard] ,data: {role: 'Admin'} },
+  // { path: 'Publish', component: EventPublishComponent,canActivate:[AuthenticationGuard]  ,data: {role: 'Admin'}},
+  // { path: 'Viewevent', component: ViewEventComponent, canActivate: [UserauthGuard], data: { role: 'User' } },
+  //{ path: 'Viewactivity', component: ViewActivityComponent, canActivate: [UserauthGuard], data: { role: 'User' } },
+  {
+    path: 'sidebar', component: SidebarComponent, canActivate: [AuthenticationGuard], data: { role: 'Admin' },
+    children: [
+      {
+        path: 'View-event', component: ViewEventComponent
+      },
+      {
+        path: 'Addevent', component: AddEventComponent
+      },
+      {
+        path: 'Addactivity', component: AddActivityComponent
+      },
+      {
+        path: 'Addprice', component: AddPriceComponent
+      },
+      {
+        path: 'Publish', component: EventPublishComponent
+      }
+
+    ],
+  },
+
+  {
+    path: 'usersidebar', component: UsersidebarComponent, canActivate: [UserauthGuard], data: { role: 'User' },
+    children: [
+      {
+        path: 'Viewactivity', component: ViewActivityComponent
+      },
+      {
+        path: 'Viewevent', component: ViewEventComponent
+      },
+    ],
+  },
+
+  { path: 'Home', component: NavbarComponent },
+  { path: "**", component: NavbarComponent }
 ]
 
 @NgModule({

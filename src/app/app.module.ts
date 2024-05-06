@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserLoginComponent } from './User/user-login/user-login.component';
 import { UserRegistrationComponent } from './User/user-registration/user-registration.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,6 +17,8 @@ import { DatePipe } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CustomPipePipe } from './custom-pipe.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersidebarComponent } from './User/usersidebar/usersidebar.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { CustomPipePipe } from './custom-pipe.pipe';
     NavbarComponent,
     SidebarComponent,
     CustomPipePipe,
+    UsersidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +43,10 @@ import { CustomPipePipe } from './custom-pipe.pipe';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

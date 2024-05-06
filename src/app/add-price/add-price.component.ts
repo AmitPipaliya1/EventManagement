@@ -17,10 +17,13 @@ export class AddPriceComponent {
   ActivityList!: any;
   Noactivity = false;
   actvitiymsg: string;
-  Noevent!:boolean
+  Noevent!: boolean
   eventmsg: string;
-  EventList!:any;
+  EventList!: any;
   IsSubmited = false;
+  x!: any
+  x1!: any
+  x2!: any
   constructor(private form: FormBuilder, private router: Router, private service: ApiCallService) { }
 
   ngOnInit(): void {
@@ -30,6 +33,7 @@ export class AddPriceComponent {
       Price: ['', Validators.required],
       FLAG: ['AddPrice'],
     });
+
 
 
     let ShowEvent =
@@ -50,9 +54,8 @@ export class AddPriceComponent {
       }
       //console.log("data of response",this.EventList);
     });
-
-
   }
+
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -81,7 +84,7 @@ export class AddPriceComponent {
         console.log(this.ActivityList);
         console.log(this.actvitiymsg);
       }
-      else{
+      else {
         this.Noactivity = false;
       }
     });
@@ -106,7 +109,7 @@ export class AddPriceComponent {
         alert(this.message);
         if (this.message = "PRICE ADDED") {
           setTimeout(() => {
-            this.registerSucess =false
+            this.registerSucess = false
           }, 2000);
           this.IsSubmited = false
           this.AddPrice.reset();

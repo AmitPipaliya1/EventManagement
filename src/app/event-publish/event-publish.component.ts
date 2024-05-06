@@ -9,7 +9,7 @@ import { ApiCallService } from '../Services/api-call.service';
   styleUrls: ['./event-publish.component.css']
 })
 export class EventPublishComponent {
-  Publish!: any;    
+  Publish!: any;
   EndPoint!: any;
   registerSucess: boolean = false;
   message = '';
@@ -45,7 +45,7 @@ export class EventPublishComponent {
     });
   }
   onSubmit(form: FormGroup) {
-    this.IsSubmited =true
+    this.IsSubmited = true
     if (this.Publish.valid) {
       let Request =
       {
@@ -58,9 +58,9 @@ export class EventPublishComponent {
         console.log(response.Message);
         this.message = (response.Message);
         this.registerSucess = true;
-        if(this.message = "Event Publish SuccessFully"){
+        if (this.message = "Event Publish SuccessFully") {
           setTimeout(() => {
-            this.registerSucess =false
+            this.registerSucess = false
           }, 1500);
           alert(this.message);
           this.IsSubmited = false

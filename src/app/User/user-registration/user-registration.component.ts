@@ -21,11 +21,11 @@ export class UserRegistrationComponent {
 
   ngOnInit() {
     this.registrationForm = this.form.group({
-      Name: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*$")]],
+      Name: ['', [Validators.required,Validators.pattern("^[a-zA-Z \-\']+")]],
       EmailId: ['', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      Password: ['', [Validators.required, Validators.minLength(8)]],
-      MobileNo: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      Address: ['', Validators.required],
+      Password: ['', [Validators.required, Validators.minLength(8),Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&#])[A-Za-z0-9@$!%*?&#]{8,14}$")]],
+      MobileNo: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),Validators.minLength(10),Validators.maxLength(10)]],
+      Address: ['', [Validators.required,Validators.pattern("^[A-Za-z0-9\/ ,.-]+$")]],
       FLAG: ['UserRegister']
     });
   }
@@ -36,6 +36,13 @@ export class UserRegistrationComponent {
     return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
   }
 
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
   openLoginPage() {
     this.router.navigate(['/Userlogin'])
   }
@@ -51,6 +58,7 @@ export class UserRegistrationComponent {
         this.message = (response.Message);
         this.registerSucess = true;
         if (this.message == "USER CREATED SUCCESSFULLY") {
+          console.log(this.message);
           this.router.navigate(['/Userlogin']);
         }
         else {

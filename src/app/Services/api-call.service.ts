@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { enviroment } from 'src/Enviroment/enviroment';
+import { environment } from 'src/Environment/environment';
 
 
 @Injectable({
@@ -12,12 +12,13 @@ export class ApiCallService {
 
   id: any
   image: any
+  vieweventflag:string;
   constructor(private http: HttpClient) { }
 
 
   // This is Api call Service For ALL Time 
   public ApiCall(Endpoint: any, databody: any): Observable<any> {
-    const url = enviroment.localHostUrl + Endpoint;
+    const url = environment.localHostUrl + Endpoint;
     return this.http.post<any>(url, databody);
   }
 }

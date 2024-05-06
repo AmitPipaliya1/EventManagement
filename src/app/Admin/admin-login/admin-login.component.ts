@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { ApiCallService } from 'src/app/Services/api-call.service';
 
 
@@ -18,7 +17,7 @@ export class AdminLoginComponent {
   message = '';
   imagestring!: any;
   IsSubmited = false;
-  constructor(private form: FormBuilder, private router: Router, private service: ApiCallService,private toastr: ToastrService) { }
+  constructor(private form: FormBuilder, private router: Router, private service: ApiCallService) { }
 
   ngOnInit(): void {
     sessionStorage.clear();
@@ -28,7 +27,7 @@ export class AdminLoginComponent {
       FLAG: ['AdminLogin']
     });
   }
-  
+
 
   onSubmit(form: FormGroup) {
     this.IsSubmited = true
@@ -36,6 +35,7 @@ export class AdminLoginComponent {
       if (this.loginForm.valid) {
         this.user = this.loginForm.value;
         console.log(this.user)
+        
         //This API Call For Admin Login 
         this.EndPoint = "api/Admin/AdminLogin";
         this.service.ApiCall(this.EndPoint, this.user).subscribe((response: any) => {
@@ -45,12 +45,11 @@ export class AdminLoginComponent {
           this.registerSucess = true;
           if (this.message == "LOGIN SUCCESSFULLY") {
             setTimeout(() => {
-              this.registerSucess =false
+              this.registerSucess = false
             }, 3000);
             this.IsSubmited = false
             this.loginForm.reset();
             sessionStorage.setItem('authtoken', 'Admin');
-            // this.toastr.success('Hello world!', 'Toastr fun!');
             alert(this.message)
             this.router.navigate(['/sidebar']);
           }

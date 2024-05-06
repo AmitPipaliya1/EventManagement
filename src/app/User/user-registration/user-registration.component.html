@@ -3,19 +3,21 @@
     class="form-signin login-form border border-success">
     <h3 class="txt-color-mg">Register</h3>
     <label for="Name" class="sr-only-focusable mt-2">Name:</label>
-    <input type="text" id="Name" (keypress)="omit_special_char($event)" placeholder="Name" class="form-control" formControlName="Name">
+    <input type="text" id="Name" (keypress)="omit_special_char($event)" placeholder="Name" class="form-control"
+      formControlName="Name">
     <div *ngIf="registrationForm.controls.Name.invalid && IsSubmitted ">
       <div *ngIf="registrationForm.controls.Name.errors?.required" class="text-danger">
         Name is required.
       </div>
-      <div *ngIf="registrationForm.controls.Name.errors?.pattern"  class="text-danger">
-            Enter Valid Name.
-          </div>
+      <div *ngIf="registrationForm.controls.Name.errors?.pattern" class="text-danger">
+        Enter Valid Name.
+      </div>
     </div>
 
 
     <label for="inputEmail" class="sr-only-focusable mt-2">Email:</label>
-    <input name="Email" type="email" id="inputEmail" placeholder="Email address" formControlName="EmailId" class="form-control">
+    <input name="Email" type="email" id="inputEmail" placeholder="Email address" formControlName="EmailId"
+      class="form-control">
     <div *ngIf="registrationForm.controls.EmailId.invalid  && IsSubmitted ">
       <div *ngIf="registrationForm.controls.EmailId.errors?.required" class="text-danger">
         Email is required.
@@ -26,40 +28,50 @@
     </div>
 
     <label for="PassWord" class="sr-only-focusable mt-2">Password:</label>
-    <input type="password" id="password" name="password" formControlName="Password" placeholder="Password" class="form-control">
+    <input type="password" id="password" name="password" formControlName="Password" placeholder="Password"
+      class="form-control">
     <div *ngIf="registrationForm.controls.Password.invalid  && IsSubmitted">
       <div *ngIf="registrationForm.controls.Password.errors?.required" class="text-danger">
         Password is required.
       </div>
+      <div *ngIf="registrationForm.controls.Password.errors?.pattern" class="text-danger">
+        Password must be strong
+      </div>
       <div *ngIf="registrationForm.controls.Password.errors?.minlength" class="text-danger">
-        Password must be at least 8 characters long.
+        Password must be have 8 characters long
       </div>
     </div>
 
     <label for="Mobile" class="sr-only-focusable mt-2">Mobile No:</label>
-    <input type="text" id="Mobile" name="Mobile" placeholder="Mobile No" formControlName="MobileNo" class="form-control">
+    <input type="number" id="Mobile" name="Mobile" placeholder="Mobile No" (keypress)="numberOnly($event)"
+      formControlName="MobileNo" class="form-control">
 
     <div *ngIf="registrationForm.controls.MobileNo.invalid  && IsSubmitted">
       <div *ngIf="registrationForm.controls.MobileNo.errors?.required" class="text-danger">
         Mobile No is required.
       </div>
-      <div *ngIf="registrationForm.controls.MobileNo.errors?.pattern" class="text-danger">
+      <div
+        *ngIf="registrationForm.controls.MobileNo.errors?.pattern && registrationForm.controls.MobileNo.errors?.minlength && registrationForm.controls.MobileNo.errors?.maxlength"
+        class="text-danger">
         Enter 10 digit Mobile no
       </div>
     </div>
 
     <label for="Address" class="sr-only-focusable mt-2">Address:</label>
-    <input type="text" id="Address" name="Address"  placeholder="Address" formControlName="Address" class="form-control">
+    <input type="text" id="Address" name="Address" placeholder="Address" formControlName="Address" class="form-control">
     <div *ngIf="registrationForm.controls.Address.invalid  && IsSubmitted ">
       <div *ngIf="registrationForm.controls.Address.errors?.required" class="text-danger">
         Address is required.
       </div>
+      <div *ngIf="registrationForm.controls.Address.errors?.pattern" class="text-danger">
+        Enter a valid Address
+      </div>
     </div>
 
     <div class="row">
-      <div class="col-8 mt-2 anchor" (click)="openLoginPage()">Already User?</div>
-      <div class="col-4">
-        <button class="btn btn-lg btn-success btn-block mt-2 right-corner" type="submit">Sign Up</button>
+      <!-- <div class="col-8 mt-2 anchor" (click)="openLoginPage()">Already User?</div>  -->
+      <div class="form-group d-flex justify-content-center mt-2">
+        <button class="btn btn-lg btn-success btn-block mt-3" type="submit">Sign Up</button>
       </div>
       <div *ngIf="registerSucess" class="alert alert-success mt-3" role="alert">
         {{message}}

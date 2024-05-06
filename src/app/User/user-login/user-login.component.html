@@ -1,39 +1,39 @@
 <div class="form-container">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" class="form-signin login-form border border-success">
-      <h3 class="txt-color-mg">Log in</h3>
-      
-      
-      <label for="inputEmail" class="sr-only-focusable mt-2">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="EmailId" required autofocus>
-      <div *ngIf="loginForm.controls.EmailId.invalid && IsSubmitted">
-      <div *ngIf="loginForm.controls.EmailId.errors?.required"  class="text-danger">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" class="form-signin login-form border border-success">
+    <h3 class="txt-color-mg">Log in</h3>
+
+
+    <label for="inputEmail" class="sr-only-focusable mt-2">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="EmailId"
+      required autofocus>
+    <div *ngIf="loginForm.controls.EmailId.invalid && IsSubmitted">
+      <div *ngIf="loginForm.controls.EmailId.errors?.required" class="text-danger">
         Email is required.
       </div>
-      <div *ngIf="loginForm.controls.EmailId.errors?.pattern"  class="text-danger">
+      <div *ngIf="loginForm.controls.EmailId.errors?.pattern" class="text-danger">
         Enter Valid Email.
       </div>
     </div>
-  
-      
-      <label for="inputPassword" class="sr-only-focusable mt-2">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="Password" required>
-      <div *ngIf="loginForm.controls.Password.invalid && IsSubmitted">
-      <div *ngIf="loginForm.controls.Password.errors?.required"  class="text-danger">
+
+
+    <label for="inputPassword" class="sr-only-focusable mt-2">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="Password"
+      required>
+    <div *ngIf="loginForm.controls.Password.invalid && IsSubmitted">
+      <div *ngIf="loginForm.controls.Password.errors?.required" class="text-danger">
         Password is required.
       </div>
-      <div *ngIf="loginForm.get('password').hasError('minLength')"  class="text-danger">
+      <div *ngIf="loginForm.controls.Password.errors?.minlength" class="text-danger">
         PassWord must be at least 8 characters long.
       </div>
     </div>
 
-      <!-- <div class="row"> -->
-        <!-- <div class="col-8 mt-2 anchor"  (click)="openRegistrationPage()">New User?</div> -->
-        <div class="col-4 ">
-          <button class="btn btn-success mt-2 d-flex justify-content-center align-item-center" type="submit">Log in</button>
-        </div>
-        <div *ngIf="registerSucess" class="alert alert-success mt-3" role="alert">
-          {{message}}
-       </div>
-      <!-- </div> -->
-    </form>
+    <div class="form-group mt-2 p-2">Don't have an account? <a class="text-success" (click)="openRegisterPage()">Register here</a></div>
+    <div class="form-group d-flex justify-content-center mt-2 p-2">
+      <button class="btn btn-success mt-2 " type="submit">Log in</button>
+    </div>
+    <div *ngIf="registerSucess" class="alert alert-success mt-3" role="alert">
+      {{message}}
+    </div>
+  </form>
 </div>

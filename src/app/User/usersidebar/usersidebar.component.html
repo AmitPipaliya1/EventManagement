@@ -1,0 +1,30 @@
+<div class="box">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top style=background-color: #e3f2fd" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand p-1" href="">Event Manager</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <div class="m-1">
+                        <button class="btn btn-success" (click)="Logout()"><i class="fa fa-sign-out"
+                                aria-hidden="true"></i>&nbsp;Log Out</button>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="main">
+    <div class="sidebar">
+        <a (click)="btn1()"><i class="fa fa-calendar-o" aria-hidden="true"></i> &nbsp;Ongoing Event</a>
+        <a (click)="btn2()"><i class="fa fa-calendar-o" aria-hidden="true"></i> &nbsp;Upcoming Event</a>
+        <a (click)="btn3()"><i class="fa fa-calendar-o" aria-hidden="true"></i> &nbsp;All Event</a>
+    </div>
+    <div class="rightside">
+        <div *ngIf="btn1flag"><app-view-event></app-view-event></div>
+        <div *ngIf="btn2flag"><app-view-event></app-view-event></div>
+        <div *ngIf="btn3flag"><app-view-event></app-view-event></div>
+    </div>
+</div>
